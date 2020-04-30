@@ -9,6 +9,7 @@ public class PickupSMG : MonoBehaviour
 
     public GameObject FakeGun;
     public GameObject RealGun;
+    public GameObject OldRealGun;
     public GameObject AmmoDisplay;
     public GameObject OldAmmoDisplay;
     public AudioSource PickUpAudio;
@@ -50,6 +51,7 @@ public class PickupSMG : MonoBehaviour
         transform.position = new Vector3(0, -1000, 0);
         FakeGun.SetActive(false);
         RealGun.SetActive(true);
+        OldRealGun.SetActive(false);
         AmmoDisplay.SetActive(true);
         OldAmmoDisplay.SetActive(false);
         yield return new WaitForSeconds(0.1f);
