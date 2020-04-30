@@ -39,13 +39,13 @@ public class SMGReload : MonoBehaviour
                 {
                     GlobalAmmo.LoadedAmmo += ReserveCount;
                     GlobalAmmo.CurrentAmmo -= ReserveCount;
-                    StartCoroutine(ActionReload());
+                    ActionReload();
                 }
                 else 
                 {
                     GlobalAmmo.LoadedAmmo += ReloadAvailable;
                     GlobalAmmo.CurrentAmmo -= ReloadAvailable;
-                    StartCoroutine(ActionReload());
+                    ActionReload();
                 }
             }
             StartCoroutine(EnableScripts());
@@ -61,9 +61,8 @@ public class SMGReload : MonoBehaviour
         MechanicsObject.SetActive(true);
     }
 
-    IEnumerator ActionReload () 
+    void ActionReload () 
     {
-        yield return new WaitForSeconds (0.1f);
         this.GetComponent<GunFire>().enabled=false;
         CrossObject.SetActive(false);
         MechanicsObject.SetActive(false);
