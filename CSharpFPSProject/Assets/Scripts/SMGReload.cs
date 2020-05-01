@@ -56,14 +56,14 @@ public class SMGReload : MonoBehaviour
     IEnumerator EnableScripts () 
     {
         yield return new WaitForSeconds (1.1f);
-        this.GetComponent<GunFire>().enabled=true;
+        this.GetComponent<GunFireSMG>().enabled=true;
         CrossObject.SetActive(true);
         MechanicsObject.SetActive(true);
     }
 
     void ActionReload () 
     {
-        this.GetComponent<GunFire>().enabled=false;
+        this.GetComponent<GunFireSMG>().enabled=false;
         CrossObject.SetActive(false);
         MechanicsObject.SetActive(false);
         ReloadSound.Play();

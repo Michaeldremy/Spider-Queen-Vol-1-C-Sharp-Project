@@ -4,11 +4,11 @@ using UnityEngine;
 using System.Collections;
 //spider follow
 
-public class SpiderFollow : MonoBehaviour {
+public class QueenSpiderFollow : MonoBehaviour {
 
 	public GameObject ThePlayer;
 	public float TargetDistance;
-	public float AllowedRange = 20;
+	public float AllowedRange = 30;
 	public GameObject TheEnemy;
 	public float EnemySpeed;
 	public int AttackTrigger;
@@ -20,6 +20,7 @@ public class SpiderFollow : MonoBehaviour {
 	public AudioSource Hurt02;
 	public AudioSource Hurt03;
 	public int PainSound;
+	public int AttackChoice;
 
 	void Update() 
 	{
@@ -29,28 +30,31 @@ public class SpiderFollow : MonoBehaviour {
 			TargetDistance = Shot.distance;
 			if (TargetDistance < AllowedRange) 
 			{
-				EnemySpeed = 0.03f;
+				EnemySpeed = 0.1f;
 				if (AttackTrigger == 0) 
 				{
-					TheEnemy.GetComponent<Animation> ().Play ("walk");
-					transform.position = Vector3.MoveTowards (transform.position, ThePlayer.transform.position, EnemySpeed);
+					TheEnemy.GetComponent<Animation> ().Play ("Walk");
+					// Vector3 newYPos = new Vector3(ThePlayer.transform.position, 0, 0);
+					transform.position = Vector3.MoveTowards (transform.position,new Vector3(ThePlayer.transform.position.x,transform.position.y,ThePlayer.transform.position.z) , EnemySpeed);
 				}
 			} 
 			else 
 			{
 				EnemySpeed = 0;
-				TheEnemy.GetComponent<Animation> ().Play ("idle");
+				TheEnemy.GetComponent<Animation> ().Play ("Idle");
 			}
 		}
 
 		if (AttackTrigger == 1) 
 		{
+			EnemySpeed = 0;
 			if (IsAttacking == 0) 
 			{
 				StartCoroutine (EnemyDamage());
 			}
-			EnemySpeed = 0;
-			TheEnemy.GetComponent<Animation> ().Play ("attack");
+			TheEnemy.GetComponent<Animation> ().Play ("Attack_Right");
+			// TheEnemy.GetComponent<Animation> ().Play ("Attack_Left");
+			// StartCoroutine (EnemyAttack());
 		}
 	}
 
@@ -63,15 +67,28 @@ public class SpiderFollow : MonoBehaviour {
 	{
 		AttackTrigger = 0;
 	}
+	// IEnumerator EnemyAttack()
+	// {
+	// 	AttackChoice = Random.Range (1,3);
+	// 	if(AttackChoice == 1)
+	// 	{
+	// 		yield return new WaitForSeconds (.4f);
+	// 		TheEnemy.GetComponent<Animation> ().Play ("Attack_Right");
+	// 	}
+	// 	if(AttackChoice == 2)
+	// 	{
+	// 		yield return new WaitForSeconds (.4f);
+	// 		TheEnemy.GetComponent<Animation> ().Play ("Attack_Left");
+	// 	}
 
-
+	// }
 	IEnumerator EnemyDamage() 
 	{
 		IsAttacking = 1;
 		PainSound = Random.Range (1,4);
-		yield return new WaitForSeconds (0.4f);
+		yield return new WaitForSeconds (0.2f);
 		ScreenFlash.SetActive (true);
-		GlobalHealth.PlayerHealth -= 2;
+		GlobalHealth.PlayerHealth -= 5;
 		if (PainSound == 1) 
 		{
 			Hurt01.Play ();
@@ -84,13 +101,17 @@ public class SpiderFollow : MonoBehaviour {
 		{
 			Hurt03.Play ();
 		}
-		yield return new WaitForSeconds (0.05f);
+		yield return new WaitForSeconds (0.04f);
 		ScreenFlash.SetActive (false);
 		yield return new WaitForSeconds (0.75f);
 		IsAttacking = 0;
 
 	}
-
+	void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+		Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+	}
 
 
 }
