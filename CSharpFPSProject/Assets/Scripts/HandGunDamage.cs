@@ -6,7 +6,7 @@ public class HandGunDamage : MonoBehaviour
 {
     public int DamageAmount = 5;
     public float TargetDistance;
-    public float AllowedRange = 30f;
+    public float AllowedRange = 15f;
     public RaycastHit hit;
     public GameObject TheBullet;
     public GameObject TheBlood;
