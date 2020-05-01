@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/CollabScenes/GameOver.unity
     guid: 317a3eb48cc3c47c780b4c6be78051fc
+  - enabled: 1
+    path: Assets/CollabScenes/WinGame.unity
+    guid: 3079fb7d346124814bab5c2b835e01cf
   m_configObjects: {}

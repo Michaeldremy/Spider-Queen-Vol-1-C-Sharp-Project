@@ -31,5 +31,6 @@ public class EnemyScriptQueen : MonoBehaviour
     {
         yield return new WaitForSeconds(10);
         Destroy(gameObject);
+        SceneManager.LoadScene (2);
     }
 }
