@@ -7,6 +7,7 @@ public class EnemyScriptQueen : MonoBehaviour
     public int EnemyHealth = 100;
     public GameObject TheQueen;
     public float EnemySpeed;
+    public GameObject ObjectiveComplete;
 
     void  DeductPoints ( int DamageAmount  )
     {
@@ -21,6 +22,7 @@ public class EnemyScriptQueen : MonoBehaviour
             // Destroy(gameObject);
             this.GetComponent<QueenSpiderFollow>().enabled = false;
             TheQueen.GetComponent<Animation>().Play("Die");
+            ObjectiveComplete.SetActive(true);
             EnemyHealth =1;
             StartCoroutine(EndQueen());
         }

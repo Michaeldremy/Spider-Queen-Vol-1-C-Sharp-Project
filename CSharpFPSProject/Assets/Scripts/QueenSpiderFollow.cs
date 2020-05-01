@@ -30,7 +30,7 @@ public class QueenSpiderFollow : MonoBehaviour {
 			TargetDistance = Shot.distance;
 			if (TargetDistance < AllowedRange) 
 			{
-				EnemySpeed = 0.03f;
+				EnemySpeed = 0.15f;
 				if (AttackTrigger == 0) 
 				{
 					TheEnemy.GetComponent<Animation> ().Play ("Walk");
