@@ -12,7 +12,7 @@ public class EnemyScriptQueen : MonoBehaviour
     {
         EnemyHealth -= DamageAmount;
         // EnemySpeed = 0;
-        TheQueen.GetComponent<Animation>().Play("GetHit");
+        // TheQueen.GetComponent<Animation>().Play("GetHit");
     }
 
     void  Update ()
@@ -20,7 +20,7 @@ public class EnemyScriptQueen : MonoBehaviour
         if (EnemyHealth <= 0) {
             // Destroy(gameObject);
             this.GetComponent<QueenSpiderFollow>().enabled = false;
-            // TheQueen.GetComponent<Animation>().Play("Die");
+            TheQueen.GetComponent<Animation>().Play("Die");
             EnemyHealth =1;
             StartCoroutine(EndQueen());
         }
