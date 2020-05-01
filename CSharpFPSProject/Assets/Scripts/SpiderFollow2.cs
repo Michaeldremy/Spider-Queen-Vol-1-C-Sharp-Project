@@ -30,7 +30,7 @@ public class SpiderFollow2 : MonoBehaviour
 			TargetDistance = Shot.distance;
 			if (TargetDistance <= AllowedRange)
             {
-				EnemySpeed = 0.02f;
+				EnemySpeed = 0.07f;
 				if (AttackTrigger == 0) 
                 {
 					TheEnemy.GetComponent<Animation> ().Play ("walk");
