@@ -39,6 +39,7 @@ public class GunFireSMG : MonoBehaviour
         RightCurs.GetComponent<Animator>().enabled = true;
         GlobalAmmo.LoadedAmmo -= 1;
         SMGSound.Play();
+        GetComponent<Animation>().Play("SMGShot");
         MuzzleFlash.SetActive(true);
         TheSMG.GetComponent<Animator>().enabled = true;
         yield return new WaitForSeconds(0.1f);

@@ -30,11 +30,11 @@ public class ZombieFollow : MonoBehaviour
 			TargetDistance = Shot.distance;
 			if (TargetDistance < AllowedRange) 
             {
-				EnemySpeed = 0.03f;
+				EnemySpeed = 0.01f;
 				if (AttackTrigger == 0) 
                 {
 					TheEnemy.GetComponent<Animation> ().Play ("Walking");
-					transform.position = Vector3.MoveTowards (transform.position, ThePlayer.transform.position, EnemySpeed);
+					transform.position = Vector3.MoveTowards (transform.position, new Vector3(ThePlayer.transform.position.x,transform.position.y,ThePlayer.transform.position.z), EnemySpeed);
 				}
 			} 
             else 
@@ -88,5 +88,10 @@ public class ZombieFollow : MonoBehaviour
 		ScreenFlash.SetActive(false);
 		yield return new WaitForSeconds(1);
 		IsAttacking = 0;
+	}
+	void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+		Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
 	}
 }

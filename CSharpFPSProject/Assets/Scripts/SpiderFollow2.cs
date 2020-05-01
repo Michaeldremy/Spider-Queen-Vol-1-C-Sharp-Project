@@ -34,7 +34,7 @@ public class SpiderFollow2 : MonoBehaviour
 				if (AttackTrigger == 0) 
                 {
 					TheEnemy.GetComponent<Animation> ().Play ("walk");
-					transform.position = Vector3.MoveTowards (transform.position, ThePlayer.transform.position, EnemySpeed);
+					transform.position = Vector3.MoveTowards (transform.position, new Vector3(ThePlayer.transform.position.x,transform.position.y,ThePlayer.transform.position.z), EnemySpeed);
 				}
 			} 
             else 
@@ -88,5 +88,10 @@ public class SpiderFollow2 : MonoBehaviour
 		ScreenFlash.SetActive(false);
 		yield return new WaitForSeconds(0.75f);
 		IsAttacking = 0;
+	}
+	void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+		Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
 	}
 }

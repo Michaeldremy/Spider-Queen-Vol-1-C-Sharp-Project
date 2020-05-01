@@ -24,7 +24,7 @@ public class EnemyScriptSpider : MonoBehaviour
     }
     IEnumerator EndSpider()
     {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(10);
         Destroy(gameObject);
     }
 }
